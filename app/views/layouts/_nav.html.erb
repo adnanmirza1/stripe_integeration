@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01" style="display: flex!important; justify-content: space-between">
+    <div class="form-inline pad-right-2">
+      <ul class="form-inline navbar-nav mr-auto mt-2 mt-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Apply for captain', new_captain_form_path, :class => 'navbar-link clr-white'  %>
+            <%= link_to 'Connect Account',captain_account_path, :class => 'navbar-link clr-white'  %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link clr-white' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link clr-white' %> |
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-link clr-white' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StripIntegeration</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <%= render 'layouts/nav' %>
+  <body class="menu-position-side menu-side-left full-screen">
+  <div class="success-alert">
+    <% flash.each do |key, value| %>
+      <div>
+        <%= value %>
+      </div>
+    <% end %>
+  </div>
+  <br/>
+  <%= yield %>
+  </body>
+</html>

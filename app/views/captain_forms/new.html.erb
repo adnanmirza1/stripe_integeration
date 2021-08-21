@@ -1,0 +1,53 @@
+<main class="main h-100" role="main">
+  <div class="container h-100">
+    <div class="row align-items-center h-100">
+      <% if current_user.stripe_account_id.present? %>
+       <h2>Your request is currently in progress</h2>
+        <% else %>
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto my-4">
+          <div class="text-center">
+            <h1 class="h3">Request to be a Hostel Captain to Get A Night off Your Stay</h1>
+            <p class="lead">
+              If approved, you'll get a night off your stay once you organize two events
+              that get at least ten guests each or three events that get at least
+              five guests each.
+            </p>
+          </div>
+          <div class="card">
+
+
+
+
+
+
+            <div class="m-sm-4">
+              <%= form_for(@hostel_captain_request) do |f| %>
+                <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                <div class="form-group">
+                      <span class="btn btn-primary btn-file">
+                        <i class="fas fa-upload"></i> Upload
+                        <%= f.file_field :image, required: true, id: "user_image_upload_file" %>
+                      </span>
+                </div>
+                <div class="form-group">
+                  <%= f.text_field :detail,
+                                   label: "Write a short sentence or two introducing yourself and a quick idea for something you plan to do as a hostel captain",
+                                   required: true,
+                                   autofocus: true,
+                                   input_html: { class: "form-control form-control-lg"  } %>
+                </div>
+
+                <div class="text-center mt-3">
+                  <!--disable if user doesn't have an image-->
+                  <%= f.submit "Submit", id: "image_conditional_submit", class: "btn btn-lg btn-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <% end %>
+
+    </div><!-- /.row -->
+  </div>
+</main>
