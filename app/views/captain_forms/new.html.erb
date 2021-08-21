@@ -1,7 +1,7 @@
 <main class="main h-100" role="main">
   <div class="container h-100">
     <div class="row align-items-center h-100">
-      <% if current_user.stripe_account_id.present? %>
+      <% if current_user.captain_form.present? %>
        <h2>Your request is currently in progress</h2>
         <% else %>
         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto my-4">

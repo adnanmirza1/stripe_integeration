@@ -4,6 +4,11 @@ class StripeService
     account = Stripe::Account.create(
       type: 'express',
       email: user.email,
+      country: 'US',
+      capabilities: {
+        card_payments: {requested: true},
+        transfers: {requested: true},
+      },
       settings: {
         payouts: {
           schedule: {
@@ -17,7 +22,14 @@ class StripeService
       }
     )
     user.update(stripe_account_id: account.id)
-    OpenStruct.new(success: true)
+    link = Stripe::AccountLink.create({
+                                        account: account.id,
+                                        refresh_url: 'https://localhost:3000',
+                                        return_url: 'https://localhost:3000',
+                                        type: 'account_onboarding',
+                                      })
+
+    OpenStruct.new(success: true, url: link.url)
   rescue StandardError
     OpenStruct.new(success: false, errors: 'OOps something is wrong please try again')
   end
